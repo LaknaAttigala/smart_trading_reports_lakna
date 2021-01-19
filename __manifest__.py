@@ -1,0 +1,16 @@
+{
+    'name': 'Smart Trading Reports',
+    'version': '12.0.1.0.0',
+    'category': 'Extra Tools',
+    'author': 'Lakna Attigala',
+    'summary': 'Module for generating reports',
+    'sequence':'6',
+    'maintainer':'flectra mates',
+    'website':'https://codeso.lk',
+    'depends': [],
+    'demo':[],
+    'data':[],
+    'installable':True,
+    'application':True,
+    'auto_control':False,
+}
