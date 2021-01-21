@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flectra>
+    
+
+     <template id="smart_invoice_export_packing_document">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                     <div class="row text-center" style="font-family: 'Times New Roman', Times, serif">
+                            <h2><strong><span t-esc="doc.company_id.name"/></strong></h2>
+                            <p>
+                                <span t-esc="doc.company_id.street"/> 
+                                <span t-esc="doc.company_id.street2"/> 
+                                <span t-esc="doc.company_id.city"/>
+                                <span t-if="doc.company_id.state_id"><span t-esc="doc.company_id.state_id.name"/></span> 
+                                <span t-esc="doc.company_id.zip"/> 
+                                <span t-esc="doc.company_id.country_id.name"/><br/>
+                                Tel: <span t-esc="doc.company_id.h_phone"/>
+                            </p> 
+                            <h3 class="text-uppercase"><strong>PACKING LIST</strong></h3>              
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6 p-1" style="border: solid 1px black; margin-left:10px;">
+                                <p>
+                                    <strong>BUYER</strong><br/>
+                                    <span t-esc="doc.partner_id.name"/><br/>
+                                    <span t-esc="doc.partner_id.street"/><br/>
+                                    <span t-esc="doc.partner_id.street2"/><br/>
+                                    <span t-esc="doc.partner_id.city"/><br/>
+                                    <span t-if="doc.partner_id.state_id"><span t-esc="doc.partner_id.state_id.name"/><br/></span>
+                                    <span t-esc="doc.partner_id.zip"/><br/>
+                                    <span t-esc="doc.partner_id.country_id.name"/><br/>
+                                    <table width="100%">
+                                        <tr>
+                                            <td>TEL:</td>
+                                            <td><span t-esc="doc.company_id.h_phone"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>FAX:</td>
+                                            <td><span t-esc="doc.name"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>EMAIL:</td>
+                                            <td><span t-esc="doc.company_id.email"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Attn:</td>
+                                            <td><span t-esc="doc.partner_id.name"/></td>
+                                        </tr>
+                                    </table>
+                                    <!-- <span t-if="doc.partner_id.vat2">V.A.T. NO : <span t-esc="doc.partner_id.vat2"/></span><br/>
+                                    <span t-if="doc.partner_id.svat">S.V.A.T. NO : <span t-esc="doc.partner_id.svat"/></span><br/>
+                                     <span t-esc="doc.partner_id.zip"/><br/> -->
+                                
+                                </p>
+                            </div>
+                            <div class="col-xs-5" style="margin-left:10px;">
+                            <table  width="100%">
+                                    <tr>
+                                           <td>Date:</td>
+                                           <td style="border:solid 1px black;"><span t-esc="doc.date_invoice"/></td>
+                                        </tr>
+                                        </table>
+                            <table  width="100%">
+                                    <tr>
+                                            <td width="30%">Invoice No :</td>
+                                            <td width="70%" style="border:solid 1px black;"><span t-esc="doc.number"/></td><br/>
+                                        </tr>
+                                        </table><br/>
+                            <table  width="100%">
+                                        <tr>
+                                            <td width="30%">PO NO:</td>
+                                            <td width="70%" style="border:solid 1px black;"><span t-esc="doc.number"/></td>
+                                        </tr>
+                                        </table>
+                            </div>
+                             <div class="col-xs-12 " style="margin-top:15px;" >
+                                <table class="table cus_table" width='100%' > 
+                                    <thead>
+                                        <tr>
+                                            <th width='15%;'  style="border:1px solid black;" >Item</th>
+                                            <th width='50%;' style="border:1px solid black;" >Description</th>
+                                            <th width='5%;' style="border:1px solid black;" >Packing</th>
+                                            <th width='10%;'  style="border:1px solid black;">Quantity</th>
+                                            <th width='10%;'  style="border:1px solid black;">Unit Price(USD)C&amp;F(Cochin)Ex-Work<span t-esc='doc.currency_id.symbol'/></th>
+                                            <th width='20%;'  style="border:1px solid black;">Amount(USD)<span t-esc='doc.currency_id.symbol'/></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="doc.invoice_line_ids" t-as="o">
+                                        <tr >
+                                            <td width='15%;' style="border:1px solid black;"><span t-esc='o.product_id.name'/></td>
+                                            <td width='50%;' style="border:1px solid black;"><span t-esc='o.name'/></td>
+                                            <td width='5%;' style="border:1px solid black;"><span t-esc='o.account_id'/></td>
+                                            <td width='10%;' style="border:1px solid black;"><span t-esc='o.quantity'/></td>
+                                            <td width='10%;' style="border:1px solid black;"><span t-esc='o.price_unit' /></td>
+                                            <td width='10%;' style="border:1px solid black;"><span t-esc='o.price_subtotal' /></td>
+                                        </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                        <div class="clearfix">
+                            <div id="total" class="row">                                
+                                <div class="col-xs-2 pull-right">
+                                    <table class="table table-condensed" style="min-width: 250px;max-width: 400px;page-break-inside: avoid;">
+                                        <tr>
+                                            <td class="text-right" style="border:0;"><strong>Total</strong></td>
+                                            <td class="text-right" style="border:1px solid #dddddd;">
+                                                <span t-field="doc.amount_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-xs-12 ">
+                                   <span t-if="doc.currency_id.name=='LKR'"><p ><span style="border:1px solid #dddddd;padding: 2px 6px 2px 3px;">Exchange Rate :<span  t-esc="doc.currency_id.rate"/></span></p></span> 
+                        </div> -->
+                        <div class="col-xs-12 border border-dark" style="position:absolute; bottom:-1350px;">
+              
+                                <p>AMOUNTS IN WORDS: "<span t-esc="doc.company_id.name"/>".</p>
+
+                                <table width="100%" class="text-left">
+                                <tbody>
+                                <tr>
+                                <td  style=" padding-top:20px;">.............................</td>
+                                </tr> 
+                                <tr>
+                                 <td>Prepared By</td>                 
+                                </tr>
+                                 </tbody>
+                                </table>
+                        </div>
+                    
+                    <div class="oe_structure"/>
+                </div>
+            </t>
+        </t>
+    </template>
+    <template id="smart_invoice_export_packing_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="smart_trading_reports_lakna.smart_invoice_export_packing_document"/>
+            </t>
+        </t>
+    </template>
+
+</flectra>
