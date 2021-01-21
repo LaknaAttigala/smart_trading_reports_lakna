@@ -22,6 +22,26 @@
             print_report_name="'Invoice - %s' % (object.number)"
             paperformat="smart_traiding_inventory.purchase_agreement_a4_format"
         />
+        <report
+            id="invoice_export_pro_forma_menu" 
+            model="account.invoice"
+            string="Print Export Pro Forma Invoice"
+            name="smart_trading_reports_lakna.smart_invoice_export_pro_forma_report"
+            file="smart_trading_reports_lakna.smart_invoice_export_pro_forma_report"
+            report_type="qweb-pdf"
+            print_report_name="'Invoice - %s' % (object.number)"
+            paperformat="smart_traiding_inventory.purchase_agreement_a4_format"
+        />
+         <report
+            id="invoice_local_pro_forma_menu" 
+            model="account.invoice"
+            string="Print Local Pro Forma Invoice"
+            name="smart_trading_reports_lakna.smart_invoice_local_pro_forma_report"
+            file="smart_trading_reports_lakna.smart_invoice_local_pro_forma_report"
+            report_type="qweb-pdf"
+            print_report_name="'Invoice - %s' % (object.number)"
+            paperformat="smart_traiding_inventory.purchase_agreement_a4_format"
+        />
        
     </data>
 </flectra>
